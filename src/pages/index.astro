@@ -1,0 +1,137 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Badge from "../components/Badge.astro";
+import Sidebar from "../components/Sidebar.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import ExperienceCard from "../components/ExperienceCard.astro";
+import FeaturedProject from "../components/FeaturedProject.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import CertificationCard from "../components/CertificationCard.astro";
+import Contact from "../components/Contact.astro";
+import CertModal from "../components/CertModal.astro";
+
+import { skills } from "../data/skills";
+import { experiences } from "../data/experience";
+import { projects } from "../data/projects";
+import { certifications } from "../data/certifications";
+
+const featuredProjects = projects.filter((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
+---
+
+<Layout>
+	<main class="mx-auto flex flex-col lg:flex-row max-w-7xl">
+		<Sidebar />
+
+		<div class="flex-1 px-8 py-24 lg:px-16">
+			<!-- ABOUT -->
+			<section id="sobre-mi" class="mb-32 scroll-mt-24">
+				<SectionTitle number="01." title="Sobre mí" />
+
+				<div class="space-y-5 leading-7 text-slate-400">
+					<p>
+						Empecé escribiendo código y terminé analizando su
+						seguridad por curiosidad. Hoy aplico ambas perspectivas:
+						desarrollo aplicaciones y ejecuto pruebas de evaluación
+						ofensiva (Red Team) para identificar vulnerabilidades
+						antes que un atacante.
+					</p>
+
+					<p>
+						Trabajo en la intersección entre <strong class="text-slate-200">desarrollo full-stack </strong>y <strong class="text-slate-200">seguridad ofensiva</strong>.
+					</p>
+
+					<p>
+						Estas son algunas de las tecnologías y herramientas con
+						las que trabajo habitualmente:
+					</p>
+				</div>
+
+				<div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+					{skills.map((skill) => <Badge>{skill.name}</Badge>)}
+				</div>
+			</section>
+
+			<!-- EXPERIENCIA -->
+			<section id="experiencia" class="mb-32 scroll-mt-24">
+				<SectionTitle number="02." title="Experiencia" />
+
+				<div class="space-y-2">
+					{
+						experiences.map((exp) => (
+							<ExperienceCard
+								role={exp.role}
+								company={exp.company}
+								period={exp.period}
+								description={exp.description}
+								technologies={exp.technologies}
+							/>
+						))
+					}
+				</div>
+			</section>
+			<!-- PROYECTOS -->
+			<section id="proyectos" class="mb-32 scroll-mt-24">
+				<SectionTitle number="03." title="Proyectos" />
+
+				<div class="space-y-6">
+					<!-- Proyectos Destacados (Lista vertical con tarjetas grandes) -->
+					{
+						featuredProjects.map((proj) => (
+							<FeaturedProject
+								title={proj.title}
+								description={proj.description}
+								technologies={proj.technologies}
+								link={proj.link}
+								github={proj.github}
+							/>
+						))
+					}					
+					{
+						otherProjects.length > 0 && (
+							<div class="py-4 text-center font-mono text-lg text-slate-500">
+								// Otros proyectos
+							</div>
+						)
+					}					
+					<div class="grid gap-4 sm:grid-cols-2">
+						{
+							otherProjects.map((proj) => (
+								<ProjectCard
+									title={proj.title}
+									description={proj.description}
+									technologies={proj.technologies}
+									link={proj.link}
+									github={proj.github}
+								/>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- CERTIFICACIONES -->
+			<section id="certificaciones" class="mb-32 scroll-mt-24">
+				<SectionTitle number="04." title="Certificaciones & Logros" />
+
+				<div class="space-y-2 grid grid-cols-2 gap-5">
+					{
+						certifications.map((cert) => (
+							<CertificationCard
+								title={cert.title}
+								issuer={cert.issuer}
+								date={cert.date}
+								description={cert.description}
+								link={cert.link}
+							/>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- CONTACTO -->
+			<Contact />
+		</div>
+	</main>
+	<CertModal />
+</Layout>

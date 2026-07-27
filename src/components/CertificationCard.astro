@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  issuer: string;
+  date: string;
+  link: string;
+  icon?: string;
+}
+
+const { title, issuer, date, link } = Astro.props;
+---
+
+<button
+  type="button"
+  data-cert-trigger
+  data-cert-title={title}
+  data-cert-issuer={issuer}
+  data-cert-date={date}
+  data-cert-link={link}
+  class="group flex w-full h-[80px] items-center justify-between rounded-xl border border-slate-800/80 bg-slate-900/40 p-4 text-left transition-all hover:border-blue-500/30 hover:bg-slate-900/80 hover:-translate-y-2"
+>
+  <div class="flex items-center gap-4">
+    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-500/20 bg-blue-500/10 text-blue-400">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"></path>
+        <path d="M9 12l2 2 4-4"></path>
+      </svg>
+    </div>
+    <div>
+      <h4 class="text-sm font-bold text-slate-200 transition-colors group-hover:text-blue-400">
+        {title}
+      </h4>
+      <p class="font-mono text-xs text-slate-500">{issuer}</p>
+    </div>
+  </div>
+  <span class="font-mono text-xs text-slate-400 group-hover:text-blue-400">Ver →</span>
+</button>

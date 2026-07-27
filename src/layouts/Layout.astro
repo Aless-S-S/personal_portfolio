@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alessandro Salazar — Security & Dev</title>  
+  <link rel="preconnect" href="https://fonts.googleapis.com">  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script is:inline>
+  const theme =
+    localStorage.getItem("theme") ??
+    (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+</script>
+</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+	:root {
+		--bg: #0a0e16;
+		--bg-elevated: #0f1420;
+		--text: #e4e9f2;
+		--text-muted: #9aa5b8;
+		--text-dim: #5c6579;
+		--line: rgba(228, 233, 242, 0.09);
+		--line-strong: rgba(228, 233, 242, 0.16);
+		--accent: #4f8ef7;
+		--accent-dim: #2f5fc4;
+		--mono: "JetBrains Mono", monospace;
+		--sans: "Inter", sans-serif;
+		color-scheme: dark;
+	}
+
+	html {
+		font-family: var(--sans);		
+	}
+
+	body {
+		margin: 0;
+		min-height: 100vh;
+		background: var(--bg);
+		color: var(--text);
+		display: flex;
+		flex-direction: column;				
+	}
+</style>

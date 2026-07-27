@@ -1,0 +1,38 @@
+---
+import Badge from "./Badge.astro";
+
+interface Props {
+  role: string;
+  company: string;
+  period: string;
+  description: string[];
+  technologies: string[];
+}
+
+const { role, company, period, description, technologies } = Astro.props;
+---
+
+<div class="group relative grid pb-12 transition-all sm:grid-cols-8 sm:gap-8 hover:bg-gray-900 rounded-2xl pt-3.5 pr-5 pl-5">
+  <header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2">
+    {period}
+  </header>
+  <div class="z-10 sm:col-span-6">
+    <h3 class="font-medium leading-snug text-slate-200">
+      <span class="inline-flex items-baseline font-medium leading-tight text-slate-200">
+        {role} · {company}
+      </span>
+    </h3>
+    <ul class="mt-2 text-sm leading-normal text-slate-400 space-y-2">
+      {description.map((desc) => (
+        <li>{desc}</li>
+      ))}
+    </ul>
+    <ul class="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías usadas">
+      {technologies.map((tech) => (
+        <li>
+          <Badge>{tech}</Badge>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import logoGif from "../assets/logo.gif";
+
+
+const navLinks = [
+  { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#experiencia", label: "Experiencia" },
+  { href: "#proyectos", label: "Proyectos" },
+  { href: "#certificaciones", label: "Certificaciones" },
+  { href: "#contacto", label: "Contacto" },
+];
+---
+
+<aside class="sticky top-0 z-40 flex w-full items-center justify-between gap-4
+         border-b border-[var(--line)] bg-[var(--bg)] px-6 py-5
+         lg:h-screen lg:w-[38%] lg:max-w-[480px] lg:flex-col lg:items-stretch
+         lg:justify-between lg:border-b-0 lg:px-16 lg:py-20">
+  <div>
+    <p class="hidden font-mono text-[16.5px] tracking-wide text-[var(--accent)] mb-3 lg:block">// SEGURIDAD & DESARROLLO</p>
+    <h1 class="text-lg font-extrabold tracking-tight lg:mb-2 lg:text-4xl">
+      Alessandro Salazar
+    </h1>
+    <h2 class="hidden text-base font-semibold text-slate-400 mb-5 lg:block">
+      Security Engineer & Full-Stack Developer
+    </h2>
+    <p class="hidden max-w-xs text-sm text-slate-500 mb-10 lg:block">
+      Construyo software y lo someto a pruebas de seguridad reales antes de entregarlo.
+    </p>
+    <div class="mb-6 h-[96px] w-[96px] overflow-hidden rounded-xl border border-slate-800 mt-5">
+      <Image src={logoGif} alt="Logo" class="h-full w-full object-cover" />
+    </div>
+
+    <nav class="hidden lg:block">
+      <ul>
+        {navLinks.map((link) => (
+          <li class="mb-0.5">
+            <a href={link.href} data-nav class="group flex items-center gap-3 py-2.5 text-[13px] font-semibold text-slate-500 transition-colors hover:text-slate-200">
+              <span class="h-px w-8 bg-slate-500 transition-all group-hover:w-12 group-hover:bg-[var(--accent)]"></span>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>   <!-- ← ESTA es la línea que faltaba: cierra el div "A" -->
+
+  <div class="flex items-center gap-4 lg:flex-col lg:items-start lg:gap-6">
+    <div class="flex gap-4 lg:gap-5">
+      <a href="mailto:alessxsalazar@gmail.com" aria-label="Email" class="text-slate-500 transition-colors hover:text-[var(--accent)]">
+        <svg class="h-[24px] w-[24px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+      <a href="https://github.com/x-0wl" aria-label="GitHub" class="text-slate-500 transition-colors hover:text-[var(--accent)]">
+        <svg class="h-[24px] w-[24px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/alessandro-salazar-62b763284/" aria-label="LinkedIn" class="text-slate-500 transition-colors hover:text-[var(--accent)]">
+        <svg class="h-[24px] w-[24px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3M12 13v3"/></svg>
+      </a>
+    </div>
+  </div>
+</aside>
